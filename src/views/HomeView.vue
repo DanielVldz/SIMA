@@ -10,9 +10,9 @@
     </div>
 
     <!-- Login Form -->
-    <form>
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ingrese su correo">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Ingrese su contraseña">
+    <form v-on:submit.prevent="login">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ingrese su correo" v-model="usuario">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Ingrese su contraseña" v-model="password">
       <input type="submit" class="fadeIn fourth" value="Iniciar sesion">
     </form>
 
@@ -27,12 +27,34 @@
 </template>
 
 <script>
-// @ is an alias to /src
-
-
+import axios from 'axios';
 export default {
   name: 'HomeView',
   components: {
+
+  },
+  data: function(){
+    return {
+      usuario: "",
+      password: "",
+      error: false,
+      error_msg: "",
+    }
+  },
+  methods: {
+    login(){
+      //console.log(this.contraseña);
+      let json = {
+        "usuario": this.usuario,
+        "password": this.password
+      };
+      axios.post('https://api.solodata.es/auth', json)
+      .then( data => {
+        console.log(data);
+      })
+
+
+    }
   }
 }
 </script>
