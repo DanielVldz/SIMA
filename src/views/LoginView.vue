@@ -1,24 +1,42 @@
 <template>
-<div>
-  <b-card class="text-center">
-    <div class="bg-secondary text-light">
-     {{userSession}}
+  <div class="home">
+ <div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Tabs Titles -->
+
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="@/assets/logokmaron.png" id="icon" alt="User Icon" />
     </div>
-  </b-card>
+
+    <!-- Login Form -->
+    <form v-on:submit.prevent="logIn">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ingrese su correo" v-model="userForm.username">
+      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Ingrese su contraseña" v-model="userForm.password">
+      <input type="submit" class="fadeIn fourth" value="Iniciar sesion">
+    </form>
+
+    <!-- Remind Passowrd -->
+    <div id="formFooter">
+      <a class="underlineHover" href="#">Olvido su contraseña?</a>
+    </div>
+
+  </div>
 </div>
+  </div>
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapActions,mapState} from "vuex"
 export default {
-  name: 'HomeView',
+  name: 'LoginView',
   components: {
 
   },
-  computed:{...mapState(['userSession'])}
+  computed:{...mapState(['userForm'])},
+  methods: {...mapActions(['logIn'])}
 }
 </script>
-
 
 <style scope>
 
@@ -52,7 +70,7 @@ h2 {
   font-weight: 600;
   text-transform: uppercase;
   display:inline-block;
-  margin: 40px 8px 10px 8px;
+  margin: 40px 8px 10px 8px; 
   color: #cccccc;
 }
 
@@ -63,7 +81,7 @@ h2 {
 .wrapper {
   display: flex;
   align-items: center;
-  flex-direction: column;
+  flex-direction: column; 
   justify-content: center;
   width: 100%;
   min-height: 100%;
@@ -284,12 +302,12 @@ input[type=text]:placeholder {
 
 *:focus {
     outline: none;
-}
+} 
 
 #icon {
   width:60%;
 }
     
-
+    
 
 </style>
