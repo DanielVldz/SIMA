@@ -6,7 +6,7 @@
 
     <!-- Icon -->
     <div class="fadeIn first">
-      <img src="@/assets/logokmaron.png" id="icon" alt="User Icon" />
+      <img src="@/assets/acuaNAV_Logo.png" id="icon" alt="User Icon" />
     </div>
 
     <!-- Login Form -->
