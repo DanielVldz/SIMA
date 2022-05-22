@@ -10,12 +10,12 @@ import {mapActions,mapState,mapGetters} from "vuex"
 
 export default {
     name: 'PondView',
-    computed:{...mapState(['pond']),...mapGetters(['pond/pondsGetter'])},
-    methods: {...mapActions(['getPonds'])},
+    computed:{...mapState(['iotDevice']),...mapGetters(['pond/IOT_DevicesGetter'])},
+    methods: {...mapActions(['getIOT_Devices'])},
  async mounted() {
-     this.getPonds();
-    console.log(this.getPonds)
-    console.log(this.pondsGetter)
+     this.getIOT_Devices();
+    console.log(this.getIOT_Device)
+    console.log(this.IOT_DevicesGetter)
     },
  }
 
