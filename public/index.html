@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+     <!-- Web Components Polyfill -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/1.0.13/webcomponents-lite.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+     <!-- Loading our component -->
+     <link rel="import" href="./WebComponents/crud.html">
     <title><%= htmlWebpackPlugin.options.title %></title>
   </head>
   <body>

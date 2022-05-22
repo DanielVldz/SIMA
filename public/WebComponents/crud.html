@@ -1,0 +1,50 @@
+<template id="custom-crud">
+    <div id="renderTarget">
+    </div>
+  </template>
+  
+  <script>
+    const currentScript = document.currentScript;
+    let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjQiLCJuYmYiOjE2NTMwOTA4MzgsImV4cCI6MTY1MzY5NTYzOCwiaWF0IjoxNjUzMDkwODM4fQ._66u_GdkJ9-gIvKzVVzSTaORvd1uTapNGol4Py1_Bn4"
+    customElements.define('custom-crud', class extends HTMLElement {
+      //static get observedAttributes() { return ['contents'] }
+      constructor() {
+        super();
+        let shadowRoot = this.attachShadow({mode: 'open'});
+        const template = currentScript.ownerDocument.querySelector('#custom-crud');
+        const instance = template.content.cloneNode(true);
+        shadowRoot.appendChild(instance);
+        this.getContent();
+      }
+     async getContent(){
+        const config = {
+        headers: { Authorization: `Bearer ${token}` }
+        };
+        axios.get('http://localhost:5195/CellPhones/create').then((response)=>{
+            console.log('looking at response',response)
+            this.shadowRoot.getElementById('renderTarget').innerHTML = response.data;
+            this.setDocumentListeners();
+        })
+      }
+      setDocumentListeners(){
+        let form = this.shadowRoot.getElementById('create-form')
+            console.log('form create',form)
+             form.addEventListener('submit', event => {
+              event.preventDefault();
+              let formData = new FormData(event);
+              let url = new URLSearchParams(formData)
+              console.log('hello',formData)
+            });
+      }
+  
+      attributeChangedCallback(name, oldValue, newValue) {
+        this[name] = newValue;
+      }
+    });
+
+   async function customSumbmit(e){
+        e.preventDefault();
+        console.log(e);
+
+    }
+  </script>
