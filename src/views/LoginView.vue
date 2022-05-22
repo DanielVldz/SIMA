@@ -34,7 +34,10 @@ export default {
 
   },
   computed:{...mapState(['userForm'])},
-  methods: {...mapActions(['logIn'])}
+  methods: {...mapActions(['logIn'])},
+  mounted(){
+    console.log(this.userForm)
+  }
 }
 </script>
 
