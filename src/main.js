@@ -5,6 +5,11 @@ import store from './store'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import VueAxios from 'vue-axios'
 import Axios from 'axios'
+import {registerToken} from "../firebase";
+
+registerToken()
+navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: "firebase-cloud-messaging-push-scope"})
+
 
 Vue.config.productionTip = false
 Vue.config.ignoredElements = [
