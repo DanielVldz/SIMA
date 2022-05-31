@@ -33,10 +33,10 @@ export default {
   components: {
 
   },
-  computed:{...mapState(['userForm'])},
+  computed:{...mapState(['userForm',"userSession","isLoggedIn"])},
   methods: {...mapActions(['logIn'])},
   mounted(){
-    console.log(this.userForm)
+    console.log(this.isLoggedIn)
   }
 }
 </script>

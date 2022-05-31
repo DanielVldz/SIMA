@@ -1,18 +1,20 @@
 import axios from 'axios';
 import router from "../router/index";
 
-
 const actions = {
     logIn({commit,state}){
-        console.log('user',state.userForm)
-        axios.post('http://localhost:4000/users/authenticate', state.userForm)
+        console.log('user',process.env)
+        axios.post(`${process.env.VUE_APP_API_ENDPOINT}/users/authenticate`, state.userForm)
         .then( ({data}) => {
-          console.log(data);
           commit('logIn',data)
           commit("isLoggedIn")
         }).then(()=>{
-            router.push('/pond')
+          window.location="pond"
         })
+      },
+      logOut({commit}){
+        commit("logOut")
+        router.push('/login')
       }
 }
 

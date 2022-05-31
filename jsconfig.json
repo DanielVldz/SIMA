@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es5",
     "module": "esnext",
-    "baseUrl": "./",
+    "baseUrl": "./http://localhost:4000",
     "moduleResolution": "node",
     "paths": {
       "@/*": [
