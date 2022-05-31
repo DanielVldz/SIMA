@@ -13,7 +13,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
-            axios.get('http://localhost:4000/ponds',config )
+            axios.get(`${process.env.VUE_APP_API_ENDPOINT}/pond`,config )
             .then( ({data}) => {
                 console.log('looking at pond data response',data)
               commit('setPonds',data)
@@ -28,7 +28,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
-            axios.get(`http://localhost:4000/ponds/${id}`,config )
+            axios.get(`${process.env.VUE_APP_API_ENDPOINT}/ponds/${id}`,config )
             .then( ({data}) => {
               commit('setPond',data)
               commit('setRequestMessage',data.mssg,{root:true})
@@ -43,7 +43,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         },data:createPond}
-            axios.post('http://localhost:4000/ponds',config )
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds`,config )
             .then( ({data}) => {
               commit('setPonds',data)
               commit('setRequestMessage',data.mssg,{root:true})
@@ -58,7 +58,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         },data:updatePond}
-            axios.put('http://localhost:4000/ponds',config )
+            axios.put(`${process.env.VUE_APP_API_ENDPOINT}/ponds`,config )
             .then( ({data}) => {
               commit('setPonds',data)
               commit('setRequestMessage',data.mssg,{root:true})
@@ -73,7 +73,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
-            axios.delete(`http://localhost:4000/ponds/${id}`,config )
+            axios.delete(`${process.env.VUE_APP_API_ENDPOINT}/ponds/${id}`,config )
             .then( ({data}) => {
               commit('setPond',data)
               commit('setRequestMessage',data.mssg,{root:true})

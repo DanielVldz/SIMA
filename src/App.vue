@@ -4,7 +4,24 @@
   </div>
 </template>
 
+<script>
+import messaging from "../firebase";
+import { onMessage } from "firebase/messaging";
+
+
+export default {
+    created() {
+      onMessage(messaging, (payload) => {
+  console.log('Message received. inside vue', payload);
+  // ...
+});
+ }
+};
+</script>
+
 <style>
+@import url("https://fonts.googleapis.com/css?family=Material+Icons");
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -14,7 +14,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
-            axios.get('http://localhost:4000/iot_module',config )
+            axios.get(`${process.env.VUE_APP_API_ENDPOINT}/iot_module`,config )
             .then( ({data}) => {
                 console.log('looking at IOT_Module data response',data)
               commit('setIOT_Modules',data)
@@ -29,7 +29,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
-            axios.get(`http://localhost:4000/iot_module/${id}`,config )
+            axios.get(`${process.env.VUE_APP_API_ENDPOINT}/iot_module/${id}`,config )
             .then( ({data}) => {
               commit('setIOT_Module',data)
               commit('setRequestMessage',data.mssg,{root:true})
@@ -44,7 +44,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         },data:createIOT_Module}
-            axios.post('http://localhost:4000/iot_module',config )
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/iot_module`,config )
             .then( ({data}) => {
               commit('setIOT_Modules',data)
               commit('setRequestMessage',data.mssg,{root:true})
@@ -59,7 +59,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         },data:updateIOT_Module}
-            axios.put('http://localhost:4000/iot_module',config )
+            axios.put(`${process.env.VUE_APP_API_ENDPOINT}/iot_module`,config )
             .then( ({data}) => {
               commit('setIOT_Modules',data)
               commit('setRequestMessage',data.mssg,{root:true})
@@ -74,7 +74,7 @@ const actions = {
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
-            axios.delete(`http://localhost:4000/iot_module/${id}`,config )
+            axios.delete(`${process.env.VUE_APP_API_ENDPOINT}/iot_module/${id}`,config )
             .then( ({data}) => {
               commit('setIOT_Module',data)
               commit('setRequestMessage',data.mssg,{root:true})

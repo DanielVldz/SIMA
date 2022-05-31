@@ -1,35 +1,42 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import store from '../store/index';
+import SIMA_Notifications from "../Notifications/Notifications";
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue'),
-    meta:{requiresAuth:true}
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    name: 'Dash',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Layout/DashboardLayout.vue'),
+    children:[
+      {
+      path: "about",
+      name: "About",
+      component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue'),
+      meta:{requiresAuth:true}
+    },
+    {
+      path: '',
+      name: 'home',
+      component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue'),
+     meta:{requiresAuth:true}
+    },
+    {
+      path: '/pond',
+      name: 'Pond',
+      component: () => import(/* webpackChunkName: "about" */ '../views/PondView.vue'),
+      meta:{requiresAuth:true}
+    },
+    ]
   },
   {
     path: '/login',
     name: 'Login',
     component: () => import(/* webpackChunkName: "about" */ '../views/LoginView.vue'),
-  },
-  {
-    path: '/pond',
-    name: 'Pond',
-    component: () => import(/* webpackChunkName: "about" */ '../views/PondView.vue'),
-  },
-
+    meta:{requiresAuth:true}
+  }
 ]
 
 const router = new VueRouter({
@@ -39,17 +46,23 @@ const router = new VueRouter({
 })
 
 
-router.beforeEach((to, from, next) => {
+router.afterEach((to, from, next) => {
+  const{getters:{isLoggedIn,getUser}} = store;
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in
     // if not, redirect to login page.
-  if (!store.getters.isLoggedIn) {
+    if(to.path === "/login" && isLoggedIn){
+      router.push({ path: '/' })
+    }
+  if (!isLoggedIn) {
      router.push({ path: '/login' })
     } else {
-      next()
+      SIMA_Notifications.init(getUser)
+      next? next():null
     }
   } else {
-    next() // make sure to always call next()!
+    SIMA_Notifications.init(getUser)
+    next? next():null
   }
 })
 
