@@ -7,29 +7,29 @@
       :sidebar-background-image="sidebarBackgroundImage"
     >
       <mobile-menu slot="content"></mobile-menu>
-      <sidebar-link to="/dashboard">
+      <sidebar-link to="/">
         <md-icon>dashboard</md-icon>
         <p>Dashboard</p>
       </sidebar-link>
+      <sidebar-link to="/pond">
+        <md-icon>local_drink</md-icon>
+        <p>Estanques</p>
+      </sidebar-link>
+      <sidebar-link to="/iot-module">
+        <md-icon>tablet_android</md-icon>
+        <p>Gestion de Modulos</p>
+      </sidebar-link>
       <sidebar-link to="/user">
-        <md-icon>person</md-icon>
-        <p>User Profile</p>
+        <md-icon>face_6</md-icon>
+        <p>User</p>
       </sidebar-link>
-      <sidebar-link to="/table">
+      <sidebar-link to="/canastillas">
+        <md-icon>shopping_basket</md-icon>
+        <p>Canastillas</p>
+      </sidebar-link>
+      <sidebar-link to="/historial">
         <md-icon>content_paste</md-icon>
-        <p>Table list</p>
-      </sidebar-link>
-      <sidebar-link to="/typography">
-        <md-icon>library_books</md-icon>
-        <p>Typography</p>
-      </sidebar-link>
-      <sidebar-link to="/icons">
-        <md-icon>bubble_chart</md-icon>
-        <p>Icons</p>
-      </sidebar-link>
-      <sidebar-link to="/maps">
-        <md-icon>location_on</md-icon>
-        <p>Maps</p>
+        <p>Historial de Monitoreo</p>
       </sidebar-link>
         <li class="md-list-item">
     <router-link

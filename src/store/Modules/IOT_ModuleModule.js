@@ -24,6 +24,24 @@ const actions = {
             })
         }
       },
+      getNotActiveIOT_Modules({commit,state,rootState}){
+        console.log('in getIOT_Modules',rootState)
+        if(rootState.userSession.token){
+            console.log
+            let config = { headers: {
+                Authorization : `Bearer ${rootState.userSession.token}`
+        }}
+            console.log("endpoint",`${process.env.VUE_APP_API_ENDPOINT}/iot_module/getnotactive`)
+            axios.get(`${process.env.VUE_APP_API_ENDPOINT}/iot_module/getnotactive`,config )
+            .then( ({data}) => {
+                console.log('looking at IOT_Module data response',data)
+              commit('setIOT_Modules',data)
+              commit('setRequestMessage',data.mssg,{root:true})
+            }).then(()=>{
+                //router.push('/')
+            })
+        }
+      },
       getIOT_Module({commit,state,rootState},id){
         if(rootState.userSession.token){
             let config = { headers: {

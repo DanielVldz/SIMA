@@ -4,7 +4,6 @@
       class="md-list-item-router md-list-item-container md-button-clean"
       @click="hideSidebar"
       v-bind="$attrs"
-      v-if="!logOut"
     >
       <div class="md-list-item-content md-ripple">
         <slot>
@@ -40,7 +39,6 @@ export default {
   },
   methods: {
     hideSidebar() {
-      this.logOut();
       if (
         this.autoClose &&
         this.$sidebar &&

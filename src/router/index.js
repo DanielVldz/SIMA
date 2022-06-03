@@ -29,6 +29,30 @@ const routes = [
       component: () => import(/* webpackChunkName: "about" */ '../views/PondView.vue'),
       meta:{requiresAuth:true}
     },
+    {
+      path: '/user',
+      name: 'User',
+      component: () => import(/* webpackChunkName: "about" */ '../views/UserView.vue'),
+      meta:{requiresAuth:true}
+    },
+    {
+      path: '/iot-module',
+      name: 'IOT',
+      component: () => import(/* webpackChunkName: "about" */ '../views/ConfigurarModuloView.vue'),
+      meta:{requiresAuth:true}
+    },
+    {
+      path: '/historial',
+      name: 'Historial',
+      component: () => import(/* webpackChunkName: "about" */ '../views/HistorialView.vue'),
+      meta:{requiresAuth:true}
+    },
+    {
+      path: '/canastillas',
+      name: 'Canastillas',
+      component: () => import(/* webpackChunkName: "about" */ '../views/CanastillasView.vue'),
+      meta:{requiresAuth:true}
+    },
     ]
   },
   {
@@ -47,6 +71,7 @@ const router = new VueRouter({
 
 
 router.afterEach((to, from, next) => {
+  console.log('to',to)
   const{getters:{isLoggedIn,getUser}} = store;
   if (to.matched.some(record => record.meta.requiresAuth)) {
     // this route requires auth, check if logged in

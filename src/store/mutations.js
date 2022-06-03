@@ -16,7 +16,6 @@ const Mutations = {
        return state.userSession = {}
      },
      isLoggedIn(state){
-         console.log('in here dude')
        return state.isLoggedIn=true
      },
      setRequestMessage(state,payload){

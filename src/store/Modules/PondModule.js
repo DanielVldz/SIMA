@@ -83,6 +83,20 @@ const actions = {
             })
         }
       },
+      getPondByUser({commit,state,rootState}){
+        if(rootState.userSession.token){
+            let config = { headers: {
+                Authorization : `Bearer ${rootState.userSession.token}`
+        }}
+            axios.get(`${process.env.VUE_APP_API_ENDPOINT}/ponds/user/${rootState.userSession.id}`,config )
+            .then( ({data}) => {
+              commit('setPonds',data)
+              commit('setRequestMessage',data.mssg,{root:true})
+            }).then(()=>{
+                //router.push('/')
+            })
+        }
+      },
 }
 
 const getters = {
