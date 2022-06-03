@@ -3,13 +3,13 @@ import router from "../router/index";
 
 const actions = {
     logIn({commit,state}){
-        console.log('user',process.env)
+        console.log('user',`${process.env.VUE_APP_API_ENDPOINT}/users/authenticate`)
         axios.post(`${process.env.VUE_APP_API_ENDPOINT}/users/authenticate`, state.userForm)
         .then( ({data}) => {
           commit('logIn',data)
           commit("isLoggedIn")
         }).then(()=>{
-          window.location="pond"
+          window.location="/"
         })
       },
       logOut({commit}){
