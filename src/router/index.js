@@ -48,6 +48,12 @@ const routes = [
       meta:{requiresAuth:true}
     },
     {
+      path: '/inventario',
+      name: 'Inventario',
+      component: () => import(/* webpackChunkName: "about" */ '../views/InventarioView.vue'),
+      meta:{requiresAuth:true}
+    },
+    {
       path: '/canastillas',
       name: 'Canastillas',
       component: () => import(/* webpackChunkName: "about" */ '../views/CanastillasView.vue'),

@@ -31,6 +31,10 @@
         <md-icon>content_paste</md-icon>
         <p>Historial de Monitoreo</p>
       </sidebar-link>
+      <sidebar-link to="/inventario">
+        <md-icon>content_paste</md-icon>
+        <p>Inventario de Alimentos</p>
+      </sidebar-link>
         <li class="md-list-item">
     <router-link
       class="md-list-item-router md-list-item-container md-button-clean"

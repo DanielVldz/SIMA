@@ -12,7 +12,7 @@
     <!-- Login Form -->
     <form v-on:submit.prevent="logIn">
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ingrese su correo" v-model="userForm.username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="Ingrese su contraseña" v-model="userForm.password">
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="Ingrese su contraseña" v-model="userForm.password">
       <input type="submit" class="fadeIn fourth" value="Iniciar sesion">
     </form>
 
@@ -165,7 +165,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], [type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
