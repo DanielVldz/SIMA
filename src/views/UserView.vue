@@ -15,26 +15,25 @@
         >
           <stats-card data-background-color="blue">
             <template slot="header">
-              <md-icon>local_drink</md-icon>
+              <md-icon>person</md-icon>
             </template>
 
             <template slot="content">
+              <p >{{user.role}} <br> </p>
               <p class="category">{{user.username}}</p>
-              <h6 >Rol: {{user.role}} <br> </h6>
             </template>
-
             <template slot="footer">
-              <div class="stats">
-                <md-icon>autorenew</md-icon>
-                Activo
-              </div>
-            </template>
+            <div class="stats">
+              <md-icon>edit</md-icon>
+              Editar Usuario
+            </div>
+          </template>
           </stats-card>
         </div>
         <router-link @click.native="form = true" to="/user" class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
          <stats-card data-background-color="">
            <template slot="header">
-            <md-icon>local_drink</md-icon>
+            <md-icon>person_add</md-icon>
           </template>
           <template slot="content">
                       <p class="category">Agregar nuevo</p>
@@ -42,7 +41,7 @@
           </template>
           <template slot="footer">
             <div class="stats">
-              <md-icon>library_add</md-icon>
+              <md-icon>control_point</md-icon>
               nuevo registro
             </div>
           </template>

@@ -62,11 +62,11 @@ export default {
   data() {
     return {
         userObj : {
-      FirstName: "kike",
-      LastName: "mentiras",
-      Username: "kike",
-      Password: "12345678",
-      Role: 0,
+      FirstName: null,
+      LastName: null,
+      Username: null,
+      Password: null,
+      Role: null,
         }
     };
   },

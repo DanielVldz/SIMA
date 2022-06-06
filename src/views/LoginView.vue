@@ -11,7 +11,7 @@
 
     <!-- Login Form -->
     <form v-on:submit.prevent="logIn">
-      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ingrese su correo" v-model="userForm.username">
+      <input type="text" id="login" class="fadeIn second" name="login" placeholder="Ingrese su usuario" v-model="userForm.username">
       <input type="password" id="password" class="fadeIn third" name="login" placeholder="Ingrese su contraseña" v-model="userForm.password">
       <input type="submit" class="fadeIn fourth" value="Iniciar sesion">
     </form>
