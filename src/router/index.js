@@ -25,7 +25,7 @@ const routes = [
     },
     {
       path: '/pond',
-      name: 'Pond',
+      name: 'Estanques',
       component: () => import(/* webpackChunkName: "about" */ '../views/PondView.vue'),
       meta:{requiresAuth:true}
     },

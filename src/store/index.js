@@ -19,7 +19,8 @@ Vue.use(Vuex)
     isLoggedIn:false,
     userForm:{username:"",password:""},
     userSession:{},
-    requestMessage:""
+    requestMessage:"",
+    users: []
   },
   getters,
   mutations,

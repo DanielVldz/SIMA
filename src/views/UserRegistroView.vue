@@ -1,0 +1,24 @@
+/* eslint-disable */
+<template>
+  <div class="content">
+    <div class="md-layout">
+              <edit-profile-form data-background-color="green"> </edit-profile-form>
+    </div>
+    </div>
+</template>
+
+<script>
+/* eslint-disable */
+import {mapActions,mapState,mapGetters} from "vuex"
+import CrearUserForm  from "./Forms/CrearUserForm.vue";
+
+
+export default {
+  components: {
+      CrearUserForm
+  },
+ async mounted() {
+
+    },
+};
+</script>
