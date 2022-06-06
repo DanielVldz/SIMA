@@ -29,12 +29,8 @@ const actions = {
       },
       CreateUsers({commit,state},createUser){
         if(state.userSession.token){
-          console.log("entró",createUser)
-          let config = { headers: {
-            Authorization : `Bearer ${state.userSession.token}`
-        },data:createUser}
-        console.log(config)
-            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/users/authenticateSingup`,config )
+          let data = createUser;
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/users/authenticateSingup`,data )
             .then( ({data}) => {
               console.log("entró despues del then")
               commit('setUsers',data)

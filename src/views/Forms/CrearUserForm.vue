@@ -11,31 +11,31 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Usuario</label>
-              <md-input v-model="user.Username" type="text"></md-input>
+              <md-input v-model="userObj.Username" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Contraseña</label>
-              <md-input v-model="user.Password" type="text"></md-input>
+              <md-input v-model="userObj.Password" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Nombre</label>
-              <md-input v-model="user.FirstName" type="text"></md-input>
+              <md-input v-model="userObj.FirstName" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
               <label>Apellido</label>
-              <md-input v-model="user.LastName" type="text"></md-input>
+              <md-input v-model="userObj.LastName" type="text"></md-input>
             </md-field>
           </div>
       <div class="md-layout-item">
         <md-field>
           <label for="movie">Role</label>
-          <md-select v-model="user.Role" name="role" id="role">
+          <md-select v-model="userObj.Role" name="role" id="role">
             <md-option value=0>Administrador</md-option>
             <md-option value=1>Biologo</md-option>
           </md-select>
@@ -61,7 +61,7 @@ export default {
   },
   data() {
     return {
-        user : {
+        userObj : {
       FirstName: "kike",
       LastName: "mentiras",
       Username: "kike",
@@ -74,7 +74,7 @@ export default {
      ...mapActions(['CreateUsers']),
     handleSubmit (){
       console.log(this.user)
-    this.CreateUsers(this.user)
+    this.CreateUsers(this.userObj)
     }
   },
 };
