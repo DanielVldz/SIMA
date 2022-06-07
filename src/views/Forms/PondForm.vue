@@ -1,7 +1,7 @@
 <template>
 <div>
   <form  class="container">
-    <md-card class="md-grey">
+    <md-card class="tarjeta">
       <md-card-header :data-background-color="dataBackgroundColor">
         <h4 class="title">Nuevo Registro</h4>
         <p class="category">Ingrese la informacion del estanque</p>
@@ -56,6 +56,28 @@
               <md-input v-model="pondObj.Longitud" type="text"></md-input>
             </md-field>
           </div>
+          <label class="label1">Temperatura</label>
+          <div class="limites">
+          <md-field class="parametros">
+        <label>Limite inferior</label>
+        <md-input v-model="TempObj.LimiteInfTemp" type="number"></md-input>
+        </md-field>
+        <md-field class="parametros">
+        <label>Limite superior</label>
+        <md-input v-model="TempObj.LimiteSupTemp" type="number"></md-input>
+        </md-field>
+          </div>
+          <label class="label1">PH</label>
+          <div class="limites">
+          <md-field class="parametros">
+        <label>Limite inferior</label>
+        <md-input v-model="PHObj.LimiteInfPH" type="number"></md-input>
+        </md-field>
+        <md-field class="parametros">
+        <label>Limite superior</label>
+        <md-input v-model="PHObj.LimiteSupPH" type="number"></md-input>
+        </md-field>
+          </div>
           <div class="md-layout-item md-size-100 text-right">
             <md-button class="md-raised md-success" @click = "handleSubmit">Registrar estanque</md-button>
           </div>
@@ -94,6 +116,14 @@ export default {
         Name: null,
         Altitude: null,
         Longitud: null
+      },
+      TempObj: {
+        LimiteInfTemp: null,
+        LimiteSupTemp: null
+      },
+      PHObj: {
+        LimiteInfPH: null,
+        LimiteSupPH: null
       }
 
     };
@@ -102,7 +132,12 @@ export default {
      ...mapActions(['getNotActiveIOT_Modules', 'CreatePonds']),
     handleSubmit (){
       console.log(this.pondObj)
-    this.CreatePonds(this.pondObj)
+      console.log(this.TempObj)
+      let pond = this.pondObj
+      let temp = this.TempObj
+      let ph = this.PHObj
+    this.CreatePonds({pond, temp, ph})
+    console.log("vista2")
     }
   },
      async mounted() {
@@ -110,4 +145,21 @@ export default {
     },
 };
 </script>
-<style></style>
+<style>
+.parametros{
+  width: 200px;
+  display: inline-block;
+  right: 29%;
+  margin-right: 2%;
+}
+
+.tarjeta{
+  width: 1200px;
+}
+.label1{
+display: flex;
+right: 50%;
+}
+</style>
+
+

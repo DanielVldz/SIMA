@@ -38,18 +38,25 @@ const actions = {
             })
         }
       },
-      CreatePonds({commit,state,rootState},createPond){
-        console.log("entró",createPond)
+      CreatePonds({commit,dispatch,state,rootState},recibido){
+        console.log("entró",recibido)
+        let pondId
+        let data = recibido.pond
         if(rootState.userSession.token){
-          createPond.userId = rootState.userSession.id
-          let data = createPond
+          data.userId = rootState.userSession.id
             axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds/create`,data )
             .then( ({data}) => {
               console.log("entró despues del then")
-              commit('setPonds',data)
+              commit('setPond',data)
+              pondId = data.id
               commit('setRequestMessage',data.mssg,{root:true})
 
             }).then(()=>{
+              console.log("1")
+                recibido.pondId = pondId
+                dispatch("SetParameters",recibido.temp)
+                dispatch("SetParameters",recibido.ph)
+                console.log("2")
                 router.push('/')
             })
         }
@@ -95,6 +102,21 @@ const actions = {
               commit('setRequestMessage',data.mssg,{root:true})
             }).then(()=>{
                 //router.push('/')
+            })
+        }
+      },
+      SetParameters({commit,state},parameters){
+        if(state.userSession.token){
+          let config = { headers: {
+            Authorization : `Bearer ${rootState.userSession.token}`
+          },data:parameters}
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds/parameters`,config )
+            .then( ({data}) => {
+              console.log("entró despues del then")
+              commit('setRequestMessage',data.mssg,{root:true})
+
+            }).then(()=>{
+                router.push('/')
             })
         }
       },
