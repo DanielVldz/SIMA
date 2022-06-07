@@ -19,7 +19,7 @@ const routes = [
     },
     {
       path: '',
-      name: 'home',
+      name: 'Dashboard',
       component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue'),
      meta:{requiresAuth:true}
     },

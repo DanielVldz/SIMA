@@ -11,7 +11,7 @@
             >
               <stats-card data-background-color="blue">
                 <template slot="header">
-                  <md-icon>tablet_android</md-icon>
+                  <md-icon>upcoming</md-icon>
                 </template>
 
                 <template slot="content">

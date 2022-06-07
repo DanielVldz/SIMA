@@ -1,11 +1,12 @@
 <template>
   <div class="content">
     <div class="md-layout">
-    <div v-if="form == true" @click="form = false">
+    <div v-if="typeof form == typeof '' && form != 'lista'" @click="form = 'lista'">
           <md-icon class="md-size-2x">arrow_back</md-icon>
     </div>
-        <crear-user-form v-if="form == true" data-background-color="green"> </crear-user-form>
-        <div v-if="form == false"
+        <crear-user-form v-if="form == 'crear'" data-background-color="green"> </crear-user-form>
+        <edit-profile-form v-if="form == 'editar'" data-background-color="green"> </edit-profile-form>
+        <div v-if="form == 'lista'"
          class="md-layout"
           >
         <div
@@ -20,17 +21,22 @@
 
             <template slot="content">
               <p >{{user.role}} <br> </p>
-              <p class="category">{{user.username}}</p>
+              <p class="category">{{user.username}}<br></p>
+              <p class="category">{{user.firstname}}</p>
             </template>
             <template slot="footer">
-            <div class="stats">
+            <div class="stats" @click="form = 'editar'">
               <md-icon>edit</md-icon>
               Editar Usuario
+            </div>
+            <div class="stats">
+              <md-icon>delete</md-icon>
+              eliminar
             </div>
           </template>
           </stats-card>
         </div>
-        <router-link @click.native="form = true" to="/user" class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
+        <router-link @click.native="form = 'crear'" to="/user" class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
          <stats-card data-background-color="">
            <template slot="header">
             <md-icon>person_add</md-icon>
@@ -41,7 +47,7 @@
           </template>
           <template slot="footer">
             <div class="stats">
-              <md-icon>control_point</md-icon>
+              <md-icon>add</md-icon>
               nuevo registro
             </div>
           </template>
@@ -64,11 +70,12 @@ import {
 export default {
   components: {
     CrearUserForm,
+    EditProfileForm,
     StatsCard
   },
   data(){
     return{
-      form:false
+      form: "lista"
     }
   },
       computed:{...mapActions(['getUsersAct']),...mapGetters(['getUsers'])},
