@@ -39,12 +39,13 @@ const actions = {
         }
       },
       CreatePonds({commit,state,rootState},createPond){
+        console.log("entró",createPond)
         if(rootState.userSession.token){
-            let config = { headers: {
-                Authorization : `Bearer ${rootState.userSession.token}`
-        },data:createPond}
-            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds`,config )
+          createPond.userId = rootState.userSession.id
+          let data = createPond
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds/create`,data )
             .then( ({data}) => {
+              console.log("entró despues del then")
               commit('setPonds',data)
               commit('setRequestMessage',data.mssg,{root:true})
 

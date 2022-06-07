@@ -1,46 +1,48 @@
 /* eslint-disable */
 <template>
-  <div class="container">
-    <md-table>
-      <md-table-row>
-        <md-table-head >Estanque</md-table-head>
-        <md-table-head>Temperatura</md-table-head>
-        <md-table-head>Oxygeno</md-table-head>
-        <md-table-head>PH</md-table-head>
-        <md-table-head>Fecha</md-table-head>
-      </md-table-row>
-
-      <md-table-row>
-        <md-table-cell>Estanque 1</md-table-cell>
-        <md-table-cell>27C</md-table-cell>
-        <md-table-cell>7.3</md-table-cell>
-                <md-table-cell>7.3</md-table-cell>
-        <md-table-cell>25/5/2022</md-table-cell>
-      </md-table-row>
-          <md-table-row>
-        <md-table-cell>Estanque 2</md-table-cell>
-        <md-table-cell>27.6C</md-table-cell>
-        <md-table-cell>7.2</md-table-cell>
-         <md-table-cell>7.3</md-table-cell>
-        <md-table-cell>23/5/2022</md-table-cell>
-      </md-table-row>
+<div>
+<div class="container" style="position: absolute;left:0; padding: 50px;">
+  <md-table>
         <md-table-row>
-        <md-table-cell>Estanque 1</md-table-cell>
-        <md-table-cell>25.5C</md-table-cell>
-        <md-table-cell>6.8</md-table-cell>
-        <md-table-cell>7.3</md-table-cell>
-        <md-table-cell>25/5/2022</md-table-cell>
-      </md-table-row>
+          <md-table-head>Fecha</md-table-head>
+          <md-table-head>Descripcion</md-table-head>
+          <md-table-head>Movimiento</md-table-head>
+          <md-table-head>Cantidad en KG.</md-table-head>
+          <md-table-head>Costo</md-table-head>
+          <md-table-head>Existencias</md-table-head>
+        </md-table-row>
         <md-table-row>
-        <md-table-cell>Estanque 4</md-table-cell>
-        <md-table-cell>26.3C</md-table-cell>
-        <md-table-cell>7.3</md-table-cell>
-                <md-table-cell>7.3</md-table-cell>
-        <md-table-cell>24/5/2022</md-table-cell>
-      </md-table-row>
+          <md-table-cell>06/06/2022</md-table-cell>
+          <md-table-cell>Alimento 1</md-table-cell>
+          <md-table-cell>Entrada</md-table-cell>
+          <md-table-cell>1000</md-table-cell>
+          <md-table-cell>50000</md-table-cell>
+          <md-table-cell>1000</md-table-cell>
+        </md-table-row>
+  </md-table>
+</div>
 
-    </md-table>
-  </div>
+<div style="background-color: dodgerblue; position: absolute;right:0;">
+  <form>
+    <p style="text-align:left ;"><label>Fecha</label></p>
+    <input type="datetime-local"><br>
+    <p style="text-align:left ;"><label>Descripcion</label></p>
+    <input type="text"><br>
+    <p style="text-align:left ;"><label>Movimiento</label></p>
+    <select>
+      <option>Entrada</option>
+      <option>Salida</option>
+    </select><br>
+    <p style="text-align:left ;"><label>Cantidad</label></p>
+    <input type="number"><br>
+    <p style="text-align:left ;"><label>Costo</label></p>
+    <input type="text"><br>
+    <input type="submit" value="Registrar">
+
+  </form>
+</div>
+
+</div>
 </template>
 
 <script>

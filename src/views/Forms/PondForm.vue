@@ -39,25 +39,25 @@
             <md-field>
                   <md-icon>local_drink</md-icon>
               <label>Nombre de estanque</label>
-              <md-input v-model="firstname" type="text"></md-input>
+              <md-input v-model="pondObj.Name" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
                 <md-icon>leaderboard</md-icon>
               <label>Altitud</label>
-              <md-input v-model="address" type="text"></md-input>
+              <md-input v-model="pondObj.Altitude" type="text"></md-input>
             </md-field>
           </div>
          <div class="md-layout-item md-small-size-100 md-size-50">
             <md-field>
                 <md-icon>arrow_right_alt</md-icon>
               <label>Longitud</label>
-              <md-input v-model="address" type="text"></md-input>
+              <md-input v-model="pondObj.Longitud" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Registrar estanque</md-button>
+            <md-button class="md-raised md-success" @click = "handleSubmit">Registrar estanque</md-button>
           </div>
       </md-card-content>
     </md-card>
@@ -87,24 +87,26 @@ export default {
       default: "red",
     },
   },
+  computed:{...mapGetters(['IOT_ModulesGetter'])},
   data() {
     return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
-      city: null,
-      country: null,
-      code: null,
-      active:false
+      pondObj: {
+        Name: null,
+        Altitude: null,
+        Longitud: null
+      }
 
     };
   },
-    computed:{...mapActions(['getNotActiveIOT_Modules']),...mapGetters(['IOT_ModulesGetter'])},
+   methods : {
+     ...mapActions(['getNotActiveIOT_Modules', 'CreatePonds']),
+    handleSubmit (){
+      console.log(this.pondObj)
+    this.CreatePonds(this.pondObj)
+    }
+  },
      async mounted() {
-     await this.getNotActiveIOT_Modules;
+     await this.getNotActiveIOT_Modules()
     },
 };
 </script>

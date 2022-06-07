@@ -20,6 +20,9 @@ const Mutations = {
      },
      setRequestMessage(state,payload){
       return state.requestMessage = payload;
+     },
+     setUsers(state,payload){
+      return state.users = payload;
      }
 }
 
