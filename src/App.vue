@@ -1,6 +1,13 @@
 <template>
   <div id="app">
     <router-view/>
+      <md-dialog-confirm
+      :md-active.sync="active"
+      :md-title="notification.title"
+      :md-content="notification.body"
+      md-confirm-text="Confirmar"
+      md-cancel-text="Cancelar"
+      />
   </div>
 </template>
 
@@ -10,10 +17,17 @@ import { onMessage } from "firebase/messaging";
 
 
 export default {
+    data: () => ({
+      active: false,
+      notification: {title:"", body:""},
+    }),
     created() {
       onMessage(messaging, (payload) => {
-  console.log('Message received. inside vue', payload);
-  // ...
+  console.log('Message received. inside vue', payload.notification);
+  this.notification.title = payload.notification.title
+  this.notification.body = payload.notification.body
+  this.active = true;
+  
 });
  }
 };
