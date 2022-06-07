@@ -1,11 +1,12 @@
 <template>
   <div class="content">
     <div class="md-layout">
-    <div v-if="form == true" @click="form = false">
+    <div v-if="typeof form == typeof '' && form != 'lista'" @click="form = 'lista'">
           <md-icon class="md-size-2x">arrow_back</md-icon>
     </div>
-        <pond-form v-if="form == true" data-background-color="green"> </pond-form>
-        <div v-if="form == false"
+        <pond-form v-if="form == 'crear'" data-background-color="green"> </pond-form>
+        <edit-pond-form v-if="form == 'editar'" data-background-color="green"> </edit-pond-form>
+        <div v-if="form == 'lista'"
          class="md-layout"
           >
         <div
@@ -19,19 +20,23 @@
             </template>
 
             <template slot="content">
-              <p class="category">{{pond.name}}</p>
-              <h6 >Area: {{pond.altitude*pond.longitud}}mts <br> </h6>
+              <h6 class="category">{{pond.name}}</h6>
+              <p>Area: {{pond.altitude*pond.longitud}}mts² <br> </p>
             </template>
 
             <template slot="footer">
+              <div class="stats" @click="form = 'editar'">
+                <md-icon>edit</md-icon>
+                Editar
+              </div>
               <div class="stats">
-                <md-icon>autorenew</md-icon>
-                Activo
+                <md-icon>delete</md-icon>
+                Eliminar
               </div>
             </template>
           </stats-card>
         </div>
-        <router-link @click.native="form = true" to="/pond" class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
+        <router-link @click.native="form = 'crear'" to="/pond" class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25">
          <stats-card data-background-color="">
            <template slot="header">
             <md-icon>local_drink</md-icon>
@@ -57,6 +62,8 @@
 /* eslint-disable */
 import {mapActions,mapGetters} from "vuex"
 import PondForm  from "./Forms/PondForm.vue";
+import EditPondForm from "./Forms/EditPondForm.vue";
+
 import {
   StatsCard
 } from "@/components";
@@ -64,11 +71,12 @@ import {
 export default {
   components: {
     PondForm,
+    EditPondForm,
     StatsCard
   },
   data(){
     return{
-      form:false
+      form: "lista"
     }
   },
       computed:{...mapActions(['getPondByUser']),...mapGetters(['pondsGetter'])},

@@ -16,7 +16,7 @@
         <p>Estanques</p>
       </sidebar-link>
       <sidebar-link to="/iot-module">
-        <md-icon>tablet_android</md-icon>
+        <md-icon>upcoming</md-icon>
         <p>Gestion de Modulos</p>
       </sidebar-link>
       <sidebar-link to="/user">
@@ -32,7 +32,7 @@
         <p>Historial de Monitoreo</p>
       </sidebar-link>
       <sidebar-link to="/inventario">
-        <md-icon>content_paste</md-icon>
+        <md-icon>inventory</md-icon>
         <p>Inventario de Alimentos</p>
       </sidebar-link>
         <li class="md-list-item">
@@ -43,7 +43,7 @@
     >
       <div class="md-list-item-content md-ripple">
           <md-icon>closed</md-icon>
-          <p>cerrar session</p>
+          <p>cerrar sesion</p>
       </div>
     </router-link>
   </li>
