@@ -11,13 +11,13 @@
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Nombre de Canastilla</label>
-              <md-input v-model="userObj.Username" type="text"></md-input>
+              <md-input v-model="basketObj.BasketName" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-33">
             <md-field>
               <label>Estatus de canastilla</label>
-              <md-input v-model="userObj.Password" type="text"></md-input>
+              <md-input v-model="basketObj.BasketStatus" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
@@ -32,7 +32,7 @@
 <script>
 import {mapActions} from "vuex"
 export default {
-  name: "edit-baskets-form",
+  name: "edit-basket-form",
   props: {
     dataBackgroundColor: {
       type: String,
@@ -42,19 +42,15 @@ export default {
   data() {
     return {
         basketObj : {
-      BasketName: null,
-      LastName: null,
-      Username: null,
-      Password: null,
-      Role: null,
+        BasketName: null,
+       BasketStatus:null,
         }
     };
   },
   methods : {
      ...mapActions(['CreateUsers']),
     handleSubmit (){
-      console.log(this.user)
-    this.CreateUsers(this.userObj)
+      console.log(this.basketObj)
     }
   },
 };

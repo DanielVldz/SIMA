@@ -51,7 +51,8 @@
 <script>
 /* eslint-disable */
 import {mapActions,mapState,mapGetters} from "vuex"
-import EditBasketForm from "./Forms/EditBasketsForm.vue";
+import EditBasketForm from "./Forms/EditBasketForm.vue";
+
 
 import {
   StatsCard
@@ -69,8 +70,6 @@ export default {
             form: "lista"
         }
     },
-  components: {
-  },
   methods:{
       basket:()=>{
                 let basket =[]
