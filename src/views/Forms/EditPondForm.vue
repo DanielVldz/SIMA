@@ -106,6 +106,7 @@ export default {
     }
   },
      async mounted() {
+       console.log('props',this.props)
      await this.getNotActiveIOT_Modules()
       let pond = this.getPondByUser.filter( (pond) => pond.id == 25 )  
       console.log(pond,"el pod")

@@ -1,14 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import store from '../store/index';
-import SIMA_Notifications from "../Notifications/Notifications";
+
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Dash',
     component: () => import(/* webpackChunkName: "about" */ '../views/Layout/DashboardLayout.vue'),
     children:[
       {
@@ -18,7 +16,7 @@ const routes = [
       meta:{requiresAuth:true}
     },
     {
-      path: '',
+      path: '/',
       name: 'Dashboard',
       component: () => import(/* webpackChunkName: "about" */ '../views/HomeView.vue'),
      meta:{requiresAuth:true}
@@ -59,6 +57,12 @@ const routes = [
       component: () => import(/* webpackChunkName: "about" */ '../views/CanastillasView.vue'),
       meta:{requiresAuth:true}
     },
+    {
+      path: '/config-iot',
+      name: 'ConfigIot',
+      component: () => import(/* webpackChunkName: "about" */ '../views/SetConfigurarIotView.vue'),
+      meta:{requiresAuth:true}
+    },
     ]
   },
   {
@@ -76,25 +80,6 @@ const router = new VueRouter({
 })
 
 
-router.afterEach((to, from, next) => {
-  console.log('to',to)
-  const{getters:{isLoggedIn,getUser}} = store;
-  if (to.matched.some(record => record.meta.requiresAuth)) {
-    // this route requires auth, check if logged in
-    // if not, redirect to login page.
-    if(to.path === "/login" && isLoggedIn){
-      router.push({ path: '/' })
-    }
-  if (!isLoggedIn) {
-     router.push({ path: '/login' })
-    } else {
-      SIMA_Notifications.init(getUser)
-      next? next():null
-    }
-  } else {
-    SIMA_Notifications.init(getUser)
-    next? next():null
-  }
-})
+
 
 export default router

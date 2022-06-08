@@ -23,6 +23,18 @@ const Mutations = {
      },
      setUsers(state,payload){
       return state.users = payload;
+     },
+     setValues(state,payload){
+       return state.iotValues = payload;
+     },
+     startLoading(state){
+       return state.loading=true;
+     },
+     stopLoading(state){
+       return state.loading=false;
+     },
+     setUser(state,payload){
+        return state.user=payload;
      }
 }
 

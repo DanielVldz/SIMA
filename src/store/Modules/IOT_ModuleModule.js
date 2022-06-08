@@ -102,7 +102,22 @@ const actions = {
             })
         }
       },
+      setIOT_ModuleConfig({commit,state,rootState},data){
+        if(rootState.userSession.token){
+
+            axios.put(`${process.env.VUE_APP_API_ENDPOINT}/iot_module/setconfig`,data )
+            .then( ({data}) => {
+                console.log("here",data)
+
+            }).then(()=>{
+                router.push('/')
+            })
+        }
+      },
 }
+
+
+
 
 const getters = {
     IOT_ModulesGetter: state => state.IOT_Modules,

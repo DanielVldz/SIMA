@@ -5,29 +5,28 @@
         <h4 class="title">Configurar Modulo</h4>
         <p class="category">Ingrese los datos para la configuracion.</p>
       </md-card-header>
-
       <md-card-content>
         <div class="md-layout">
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Nombre</label>
-              <md-input v-model="username" type="text"></md-input>
+              <md-input v-model="config.wifi_type" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Nombe de la Red</label>
-              <md-input v-model="emailadress" type="email"></md-input>
+              <md-input v-model="config.wifi_user" type="email"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-small-size-100 md-size-100">
             <md-field>
               <label>Clave de la Red</label>
-              <md-input v-model="firstname" type="text"></md-input>
+              <md-input v-model="config.wifi_pass" type="text"></md-input>
             </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
-            <md-button class="md-raised md-success">Actualizar Modulo</md-button>
+            <md-button class="md-raised md-success" @click="handleClick" >Actualizar Modulo</md-button>
           </div>
         </div>
       </md-card-content>
@@ -35,6 +34,8 @@
   </form>
 </template>
 <script>
+import {mapActions} from "vuex"
+
 export default {
   name: "edit-iot-form",
   props: {
@@ -44,20 +45,23 @@ export default {
     },
   },
   data() {
-    return {
-      username: null,
-      disabled: null,
-      emailadress: null,
-      lastname: null,
-      firstname: null,
-      address: null,
-      city: null,
-      country: null,
-      code: null,
-      aboutme:
-        "Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.",
+    return { config:{
+      Id:null,
+      wifi_user:null,
+      wifi_pass:null,
+      wifi_type:null
+  }
+
+
     };
   },
+  methods:{...mapActions(['setIOT_ModuleConfig']),
+  handleClick(){
+    this.setIOT_ModuleConfig(this.config)
+  }},
+   async mounted() {
+     this.config.Id=this.$route.query.id
+    },
 };
 </script>
 <style></style>

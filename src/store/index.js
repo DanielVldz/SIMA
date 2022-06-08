@@ -20,7 +20,10 @@ Vue.use(Vuex)
     userForm:{username:"",password:""},
     userSession:{},
     requestMessage:"",
-    users: []
+    users: [],
+    iotValues:[],
+    loading:false,
+    user:{}
   },
   getters,
   mutations,

@@ -14,7 +14,7 @@ const actions = {
       },
       logOut({commit}){
         commit("logOut")
-        router.push('/login')
+        router.push('/login').catch(()=>{})
       },
       getUsersAct({commit,state}){
         let config = { headers: {
@@ -55,6 +55,24 @@ const actions = {
             })
         }
       },
+      getValuesByPond({commit},id){
+        commit("startLoading")
+        console.log('user',`${process.env.VUE_APP_API_ENDPOINT}/iot_values/${id}`)
+        axios.get(`${process.env.VUE_APP_API_ENDPOINT}/iot_values/${id}`)
+        .then( ({data}) => {
+          console.log('get values',data)
+          commit('setValues',data)
+          commit("stopLoading")
+        }).catch(()=>{
+          commit('setValues',[])
+          commit("stopLoading")
+        })
+      },
+      setConfigUser({commit},id){
+        commit('setUser',id)
+      }
 }
 
 export default actions
+
+

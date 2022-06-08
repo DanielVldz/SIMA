@@ -5,7 +5,8 @@
           <md-icon class="md-size-2x">arrow_back</md-icon>
     </div>
         <crear-user-form v-if="form == 'crear'" data-background-color="green"> </crear-user-form>
-        <edit-profile-form v-if="form == 'editar'" data-background-color="green"> </edit-profile-form>
+         <edit-profile-form v-if="form == 'editar'" data-background-color="green"> </edit-profile-form>
+
         <div v-if="form == 'lista'"
          class="md-layout"
           >
@@ -25,7 +26,7 @@
               <p class="category">{{user.firstname}}</p>
             </template>
             <template slot="footer">
-            <md-button class="md-icon-button" @click="form = 'editar'">
+            <md-button class="md-icon-button" @click="handleClick(user.id)">
             <md-icon>edit</md-icon>
           </md-button>
             <md-button class="md-icon-button" @click="handleSubmit(user.id)">
@@ -76,7 +77,7 @@ export default {
       form: "lista"
     }
   },
-      computed:{...mapActions(['getUsersAct']),...mapGetters(['getUsers'])},
+      computed:{...mapActions(['getUsersAct']),...mapGetters(['getUsers',"getUser"])},
  async mounted() {
    if(this.$route.query.form == "true"){
          this.form=true
@@ -84,10 +85,16 @@ export default {
     await this.getUsersAct;
     },
     methods : {
-     ...mapActions(['deleteUser']),
+     ...mapActions(['deleteUser',"setConfigUser"]),
     handleSubmit(id){
       console.log(id)
     this.deleteUser(id)
+    },
+    handleClick(id){
+      console.log('what?',id)
+      this.setConfigUser(id)
+      this.form="editar"
+
     }
   },
 };

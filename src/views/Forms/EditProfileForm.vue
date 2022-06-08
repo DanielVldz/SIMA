@@ -59,7 +59,7 @@ export default {
       default: "",
     },
   },
-   computed:{...mapGetters(['getUsers'])},
+   computed:{...mapGetters(['getUsers',"getUserConfig"])},
   data() {
     return {
         userObj : {
@@ -79,8 +79,8 @@ export default {
     }
   },
   async mounted() {
-      let user = this.getUsers.filter( (user) => user.id == 1 )  
-      console.log(user,"el usuario")
+      let user = this.getUsers.filter( (user) => user.id == this.getUser )
+      console.log(user,"el usuario",this.getUser)
       this.userObj = {
         FirstName: user[0].firstName,
         LastName: user[0].lastName,

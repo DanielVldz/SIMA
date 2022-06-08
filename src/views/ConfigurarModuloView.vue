@@ -2,7 +2,7 @@
 <template>
   <div class="content">
     <div class="md-layout">
-              <edit-iot-form v-if="form == true" data-background-color="green"> </edit-iot-form>
+              <edit-iot-form  :module-id="id" v-if="form == true" data-background-color="green"> </edit-iot-form>
        <div v-if="form == false" class="md-layout">
             <div
             v-for="iotModule in IOT_ModulesGetter"
@@ -21,7 +21,7 @@
                 </template>
 
                 <template slot="footer">
-                  <div @click="active = true" class="stats">
+                  <div @click="handleEdit(iotModule.id)" class="stats">
                     <md-icon>autorenew</md-icon>
                     Asociar Modulo
                   </div>
@@ -37,6 +37,8 @@
 /* eslint-disable */
 import {mapActions,mapState,mapGetters} from "vuex"
 import EditIotForm  from "./Forms/EditIotForm.vue";
+import router from "../router/index";
+
 import {
   StatsCard
 } from "@/components";
@@ -48,10 +50,19 @@ export default {
   },
     data(){
     return{
+      id:null,
       form:false
     }
   },
   computed:{...mapActions(['getNotActiveIOT_Modules']),...mapGetters(['IOT_ModulesGetter'])},
+  methods:{
+    handleEdit(id){
+
+      this.form=true;
+      this.id=id;
+      router.push({name: 'ConfigIot' , query: { id:id}})
+    }
+  },
  async mounted() {
         this.getNotActiveIOT_Modules;
     },

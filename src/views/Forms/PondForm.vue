@@ -60,22 +60,22 @@
           <div class="limites">
           <md-field class="parametros">
         <label>Limite inferior</label>
-        <md-input v-model="TempObj.LimiteInfTemp" type="number"></md-input>
+        <md-input v-model="TempObj.low" type="decimal"></md-input>
         </md-field>
         <md-field class="parametros">
         <label>Limite superior</label>
-        <md-input v-model="TempObj.LimiteSupTemp" type="number"></md-input>
+        <md-input v-model="TempObj.high" type="decimal"></md-input>
         </md-field>
           </div>
           <label class="label1">PH</label>
           <div class="limites">
           <md-field class="parametros">
         <label>Limite inferior</label>
-        <md-input v-model="PHObj.LimiteInfPH" type="number"></md-input>
+        <md-input v-model="PHObj.low" type="decimal"></md-input>
         </md-field>
         <md-field class="parametros">
         <label>Limite superior</label>
-        <md-input v-model="PHObj.LimiteSupPH" type="number"></md-input>
+        <md-input v-model="PHObj.high" type="decimal"></md-input>
         </md-field>
           </div>
           <div class="md-layout-item md-size-100 text-right">
@@ -118,14 +118,14 @@ export default {
         Longitud: null
       },
       TempObj: {
-        idparametro: 1,
-        LimiteInfTemp: null,
-        LimiteSupTemp: null
+        Parameter: 1,
+        high: null,
+        low: null
       },
       PHObj: {
-        idparametro: 2,
-        LimiteInfPH: null,
-        LimiteSupPH: null
+        Parameter: 2,
+        high: null,
+        low: null
       }
 
     };
@@ -133,8 +133,8 @@ export default {
    methods : {
      ...mapActions(['getNotActiveIOT_Modules', 'CreatePonds']),
     handleSubmit (){
-      console.log(this.pondObj)
-      console.log(this.TempObj)
+      console.log("ph ",this.PHObj)
+      console.log("temp ",this.TempObj)
       let pond = this.pondObj
       let temp = this.TempObj
       let ph = this.PHObj

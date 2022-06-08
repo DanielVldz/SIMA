@@ -1,4 +1,7 @@
 
+
+// proper initialization
+if( 'function' === typeof importScripts) {
 /* eslint-disable */
 importScripts('https://www.gstatic.com/firebasejs/8.2.7/firebase-app.js')
 importScripts('https://www.gstatic.com/firebasejs/8.2.7/firebase-messaging.js')
@@ -29,3 +32,4 @@ messaging.onBackgroundMessage((payload) => {
   self.registration.showNotification(notificationTitle,
     notificationOptions);
 });
+}

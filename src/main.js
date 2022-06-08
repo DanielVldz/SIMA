@@ -20,9 +20,6 @@ navigator.serviceWorker.register('firebase-messaging-sw.js', {scope: "firebase-c
 Vue.prototype.$Chartist = Chartist;
 
 Vue.config.productionTip = false
-Vue.config.ignoredElements = [
-  'custom-crud'
-]
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 Vue.use(MaterialDashboard);

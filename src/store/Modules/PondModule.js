@@ -53,11 +53,12 @@ const actions = {
 
             }).then(()=>{
               console.log("1")
-                recibido.pondId = pondId
+                recibido.temp.pondId = pondId
+                recibido.ph.pondId = pondId
                 dispatch("SetParameters",recibido.temp)
                 dispatch("SetParameters",recibido.ph)
                 console.log("2")
-                router.push('/')
+                //router.push('/')
             })
         }
       },
@@ -83,21 +84,25 @@ const actions = {
         }}
             axios.delete(`${process.env.VUE_APP_API_ENDPOINT}/ponds/${id}`,config )
             .then( ({data}) => {
+
               commit('setPond',data)
               commit('setRequestMessage',data.mssg,{root:true})
 
             }).then(()=>{
-                router.push('/')
+                commit("setPonds",state.ponds.filter(item=>item.id!=id))
+               // router.push('/')
             })
         }
       },
       getPondByUser({commit,state,rootState}){
+        console.log('what is going on here')
         if(rootState.userSession.token){
             let config = { headers: {
                 Authorization : `Bearer ${rootState.userSession.token}`
         }}
             axios.get(`${process.env.VUE_APP_API_ENDPOINT}/ponds/user/${rootState.userSession.id}`,config )
             .then( ({data}) => {
+              console.log('are we in the ponds?')
               commit('setPonds',data)
               commit('setRequestMessage',data.mssg,{root:true})
             }).then(()=>{
@@ -106,17 +111,19 @@ const actions = {
         }
       },
       SetParameters({commit,rootState},parameters){
+        console.log('parameters',rootState.userSession.token)
+        let data ={ pondId:parameters.pondId,high:Number(parameters.high),low:Number(parameters.low),parameter:parameters.Parameter}
         if(rootState.userSession.token){
           let config = { headers: {
             Authorization : `Bearer ${rootState.userSession.token}`
-          },data:parameters}
-            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds/parameters`,config )
+          },data}
+            axios.post(`${process.env.VUE_APP_API_ENDPOINT}/ponds/parameters`,data )
             .then( ({data}) => {
-              console.log("entró despues del then")
+              console.log("entró despues del then",data)
               commit('setRequestMessage',data.mssg,{root:true})
 
             }).then(()=>{
-                router.push('/')
+               router.push('/')
             })
         }
       },
