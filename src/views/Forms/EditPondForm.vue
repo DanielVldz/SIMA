@@ -87,7 +87,7 @@ export default {
       default: "red",
     },
   },
-  computed:{...mapGetters(['IOT_ModulesGetter'])},
+  computed:{...mapGetters(['IOT_ModulesGetter','getPondByUser'])},
   data() {
     return {
       pondObj: {
@@ -99,14 +99,21 @@ export default {
     };
   },
    methods : {
-     ...mapActions(['getNotActiveIOT_Modules', 'CreatePonds']),
+     ...mapActions(['getNotActiveIOT_Modules', 'UpdatePond']),
     handleSubmit (){
       console.log(this.pondObj)
-    this.CreatePonds(this.pondObj)
+    this.UpdatePond(this.pondObj)
     }
   },
      async mounted() {
      await this.getNotActiveIOT_Modules()
+      let pond = this.getPondByUser.filter( (pond) => pond.id == 25 )  
+      console.log(pond,"el pod")
+      this.pondObj = {
+        Name: pond[25].name,
+        Altitude: pond[25].altitude,
+        Longitud: pond[25].longitud
+        }
     },
 };
 </script>

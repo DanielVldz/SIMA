@@ -41,6 +41,20 @@ const actions = {
             })
         }
       },
+      deleteUser({commit,state},id){
+        if(state.userSession.token){
+            let config = { headers: {
+                Authorization : `Bearer ${state.userSession.token}`
+        }}
+            axios.delete(`${process.env.VUE_APP_API_ENDPOINT}/users/delete/${id}`,config )
+            .then( ({data}) => {
+              commit('setRequestMessage',data.mssg,{root:true})
+
+            }).then(()=>{
+                router.push('/user')
+            })
+        }
+      },
 }
 
 export default actions

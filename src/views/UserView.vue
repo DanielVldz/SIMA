@@ -25,14 +25,12 @@
               <p class="category">{{user.firstname}}</p>
             </template>
             <template slot="footer">
-            <div class="stats" @click="form = 'editar'">
-              <md-icon>edit</md-icon>
-              Editar Usuario
-            </div>
-            <div class="stats">
-              <md-icon>delete</md-icon>
-              eliminar
-            </div>
+            <md-button class="md-icon-button" @click="form = 'editar'">
+            <md-icon>edit</md-icon>
+          </md-button>
+            <md-button class="md-icon-button" @click="handleSubmit(user.id)">
+            <md-icon>delete</md-icon>
+          </md-button>
           </template>
           </stats-card>
         </div>
@@ -85,5 +83,12 @@ export default {
    }
     await this.getUsersAct;
     },
+    methods : {
+     ...mapActions(['deleteUser']),
+    handleSubmit(id){
+      console.log(id)
+    this.deleteUser(id)
+    }
+  },
 };
 </script>

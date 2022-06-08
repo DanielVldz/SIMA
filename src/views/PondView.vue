@@ -25,14 +25,12 @@
             </template>
 
             <template slot="footer">
-              <div class="stats" @click="form = 'editar'">
-                <md-icon>edit</md-icon>
-                Editar
-              </div>
-              <div class="stats">
-                <md-icon>delete</md-icon>
-                Eliminar
-              </div>
+              <md-button class="md-icon-button" @click="form = 'editar'">
+            <md-icon>edit</md-icon>
+          </md-button>
+              <md-button class="md-icon-button" @click="handleSubmit(pond.id)">
+            <md-icon>delete</md-icon>
+          </md-button>
             </template>
           </stats-card>
         </div>
@@ -86,5 +84,12 @@ export default {
    }
     await this.getPondByUser;
     },
+    methods : {
+     ...mapActions(['deletePond']),
+    handleSubmit (id){
+      console.log(id)
+    this.deletePond(id)
+    }
+  },
 };
 </script>
