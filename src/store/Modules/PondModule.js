@@ -105,8 +105,8 @@ const actions = {
             })
         }
       },
-      SetParameters({commit,state},parameters){
-        if(state.userSession.token){
+      SetParameters({commit,rootState},parameters){
+        if(rootState.userSession.token){
           let config = { headers: {
             Authorization : `Bearer ${rootState.userSession.token}`
           },data:parameters}

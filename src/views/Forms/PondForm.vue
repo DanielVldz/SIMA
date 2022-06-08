@@ -118,10 +118,12 @@ export default {
         Longitud: null
       },
       TempObj: {
+        idparametro: 1,
         LimiteInfTemp: null,
         LimiteSupTemp: null
       },
       PHObj: {
+        idparametro: 2,
         LimiteInfPH: null,
         LimiteSupPH: null
       }
